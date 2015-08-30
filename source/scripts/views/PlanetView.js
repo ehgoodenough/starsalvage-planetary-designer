@@ -18,7 +18,6 @@ var PlanetView = React.createClass({
         renderer.setSize(160, 120)
 
         window.setTimeout(function() {
-            console.log(renderer)
             renderer.setSize(1280, 720)
             renderer.render(scene, camera)
             element.style.width = WIDTH + "em"
@@ -31,13 +30,17 @@ var PlanetView = React.createClass({
         this.refs.view.getDOMNode().appendChild(element)
 
         var geometry = new Three.BoxGeometry(1, 1, 1)
-        var material = new Three.MeshBasicMaterial({color: 0x0FF00})
+        var material = new Three.MeshLambertMaterial({color: 0x0FF00})
         var cube = new Three.Mesh(geometry, material)
         cube.rotation.x += 0.45
         cube.rotation.y += 0.45
         scene.add(cube)
 
         camera.position.z = 2
+
+        var light = new Three.HemisphereLight(0xFFFFFF, 0x000000, 0.5)
+        light.position.set(0, 320,0 )
+        scene.add(light)
 
         renderer.render(scene, camera)
         //console.log(element.toDataURL("image/png"))
