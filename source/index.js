@@ -1,5 +1,6 @@
 window.React = require("react")
 window.Phlux = require("phlux")
+window.Three = require("three")
 
 window.WIDTH = 20
 window.HEIGHT = 15

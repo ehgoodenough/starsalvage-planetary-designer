@@ -1,10 +1,11 @@
 @import "./styles/Fonts.scss";
 @import "./styles/Defaults.scss";
 @import "./styles/views/FrameView.scss";
+@import "./styles/views/PlanetView.scss";
 
 html
 {
     color: #eee;
     font-family: goldfish;
-    background-color: #000;
+    background-color: #eee;
 }
