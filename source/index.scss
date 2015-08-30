@@ -1,0 +1,10 @@
+@import "./styles/Fonts.scss";
+@import "./styles/Defaults.scss";
+@import "./styles/views/FrameView.scss";
+
+html
+{
+    color: #eee;
+    font-family: goldfish;
+    background-color: #000;
+}

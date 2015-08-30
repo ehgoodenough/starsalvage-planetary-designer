@@ -1,0 +1,39 @@
+#frame-view
+{
+    top: 0rem;
+    left: 0rem;
+    right: 0rem;
+    bottom: 0rem;
+    margin: auto;
+    position: fixed;
+    overflow: hidden;
+}
+
+@mixin frame-view-aspect-ratio($awidth, $aheight, $twidth, $theight)
+{
+    @media(min-aspect-ratio: #{$awidth + "/" + $aheight})
+    {
+        #frame-view._#{$awidth + "x" + $aheight}
+        {
+            height: 100vh;
+            width: ($awidth/$aheight)*100vh;
+            font-size: (($awidth/$aheight)*100vh)/$twidth;
+        }
+    }
+
+    @media(max-aspect-ratio: #{$awidth + "/" + $aheight})
+    {
+        #frame-view._#{$awidth + "x" + $aheight}
+        {
+            width: 100vw;
+            height: ($aheight/$awidth)*100vw;
+            font-size: (($aheight/$awidth)*100vw)/$theight;
+        }
+    }
+}
+
+@include frame-view-aspect-ratio(16, 9, 16, 9);
+@include frame-view-aspect-ratio(2, 3, 10, 15);
+@include frame-view-aspect-ratio(3, 2, 15, 10);
+@include frame-view-aspect-ratio(3, 4, 15, 20);
+@include frame-view-aspect-ratio(4, 3, 20, 15);
