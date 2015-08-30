@@ -19,14 +19,20 @@ var PlanetView = React.createClass({
 
         this.vars.scene = new Three.Scene()
         this.vars.camera = new Three.PerspectiveCamera(75, 1280 / 960, 0.1, 1000)
-        this.vars.renderer = new Three.WebGLRenderer()
+        this.vars.renderer = new Three.WebGLRenderer({
+            antialias: true
+        })
 
-        this.vars.geometry = new Three.SphereGeometry(1 + planet.size, 32, 32)
+        this.vars.geometry = new Three.SphereGeometry(planet.size, 32, 32)
         this.vars.material = new Three.MeshLambertMaterial()
-        this.vars.material.map = Three.ImageUtils.loadTexture("./assets/images/earth.jpg", {}, function() {
-            this.vars.renderer.render(this.vars.scene, this.vars.camera)
-        }.bind(this))
-        this.vars.material.map.minFilter = Three.LinearFilter //?!
+        var image = document.createElement("img")
+        var texture = new Three.Texture(image)
+        image.onload = function() {
+            texture.needsUpdate = true
+        }
+        image.src = planet.texture
+        texture.minFilter = Three.LinearMipMapNearestFilter
+        this.vars.material.map = texture
         this.vars.mesh = new Three.Mesh(this.vars.geometry, this.vars.material)
         this.vars.mesh.rotation.x = planet.rotation.x
         this.vars.mesh.rotation.y = planet.rotation.x
