@@ -1,15 +1,14 @@
 var PlanetView = React.createClass({
     render: function() {
         return (
-            <div id="planet-view" ref="element"
+            <div id="planet-view" ref="view"
                 style={this.renderStyle()}/>
         )
     },
     renderStyle: function() {
         return {
             width: WIDTH + "em",
-            height: HEIGHT + "em",
-            backgroundColor: "#111"
+            height: HEIGHT + "em"
         }
     },
     componentDidMount: function() {
@@ -18,10 +17,18 @@ var PlanetView = React.createClass({
         var renderer = new Three.WebGLRenderer()
         renderer.setSize(160, 120)
 
+        window.setTimeout(function() {
+            console.log(renderer)
+            renderer.setSize(1280, 720)
+            renderer.render(scene, camera)
+            element.style.width = WIDTH + "em"
+            element.style.height = HEIGHT + "em"
+        }, 3000)
+
         var element = renderer.domElement
         element.style.width = WIDTH + "em"
         element.style.height = HEIGHT + "em"
-        this.refs.element.getDOMNode().appendChild(element)
+        this.refs.view.getDOMNode().appendChild(element)
 
         var geometry = new Three.BoxGeometry(1, 1, 1)
         var material = new Three.MeshBasicMaterial({color: 0x0FF00})
