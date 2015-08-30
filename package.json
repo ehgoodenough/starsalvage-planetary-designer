@@ -8,8 +8,10 @@
   },
   "dependencies": {
     "phlux": "^1.0.5",
+    "raf": "^3.1.0",
     "react": "^0.13.3",
-    "three": "^0.71.1"
+    "three": "^0.71.1",
+    "vkey": "^1.0.0"
   },
   "devDependencies": {
     "aliasify": "~1.7.2",
