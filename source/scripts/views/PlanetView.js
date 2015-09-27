@@ -9,8 +9,8 @@ var PlanetView = React.createClass({
         return {
             top: "0em",
             left: "0em",
-            width: "50%",
-            height: "50%",
+            width: "100%",
+            height: "100%",
             position: "absolute",
         }
     },
@@ -20,7 +20,8 @@ var PlanetView = React.createClass({
         this.vars.scene = new Three.Scene()
         this.vars.camera = new Three.PerspectiveCamera(75, 1280 / 960, 0.1, 1000)
         this.vars.renderer = new Three.WebGLRenderer({
-            antialias: true
+            antialias: true,
+            alpha: true
         })
 
         this.vars.geometry = new Three.SphereGeometry(planet.size, 32, 32)
